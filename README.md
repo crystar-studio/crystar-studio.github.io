@@ -21,6 +21,7 @@ python3 -m http.server 8000
 ├── characters.html     キャラクター
 ├── gallery.html        ギャラリー
 ├── work.html           作品詳細の共通テンプレート（?code=xxx で切り替え）
+├── terms.html          用語集の共通テンプレート（?code=xxx で切り替え）
 ├── Resources/          → Resources/README.md に命名規約
 └── assets/
     ├── css/
@@ -61,6 +62,37 @@ python3 -m http.server 8000
 
 HTMLの新規作成は不要です。作品詳細は `work.html?code=(code)` が共通テンプレートとして処理します。
 セクション構成（STORY / WORLD / CHARACTER）を作品ごとに変える場合は、`WORKS` のその作品に `sections` を書けば上書きされます。
+
+## 用語集の追加
+
+作品ページのWORLDブロックの一番下に出る GLOSSARY ボタンから開くページ（`terms.html?code=(code)`）。
+
+1. `assets/data/works/(code).js` に `terms` を書く
+2. ボタンは `terms` を書いた作品にだけ自動で出る（HTMLの編集は不要）
+
+```js
+terms: [
+  {
+    term: '用語',
+    reading: 'よみ',          // 任意。検索に使い、用語の下に小さく出る
+    aliases: ['別名'],        // 任意。検索にだけ使う（表示しない）
+    text: '最初から見えている説明',
+    reveals: [                // 任意。物語の進行で変わる情報
+      { label: '第一話以降', text: '…' },
+      { label: '最終話以降', text: '…' },
+    ],
+  },
+]
+```
+
+`reveals` は書いた順に入れ子で開く。1段目を開くまで2段目は見えないので、
+読み進めた人にだけ順番に見せられる。段数の上限はない。
+
+検索は「開く前に見えている内容」だけを対象にしている（用語・よみ・別名・`text`）。
+隠してある続きまで拾うと、検索結果そのものがネタバレになるため。
+
+用語はシリーズ全体で共通の扱いなので、書くのは親作品のデータファイルだけでよい。
+シリーズの中の1作品から開いた場合も、親作品の用語集が出る。
 
 ## ギャラリー画像の追加
 
