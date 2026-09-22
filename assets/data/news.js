@@ -50,7 +50,7 @@ export const NEWS = [
   {
     date: '2026-09-22',
     title: '『END OF HOPE:21xx - Last Call』用語集ページを公開しました',
-    message: '『END OF HOPE:21xx - Last Call』の用語集ページを公開しました。\\n\\nWorldブロック内に追加されたボタンからご覧いただけます。\\n物語の進行にあわせて、用語や人物の情報を順次追加・更新していきます。',
+    message: '『END OF HOPE:21xx - Last Call』の用語集ページを公開しました。\n\nWorldブロック内に追加されたボタンからご覧いただけます。\n物語の進行にあわせて、用語や人物の情報を順次追加・更新していきます。',
   },
   {
     date: '2026-09-22',
