@@ -24,6 +24,7 @@ const PAGE_SCRIPTS = {
   characters: () => import('./pages/characters.js'),
   gallery: () => import('./pages/gallery.js'),
   reader: () => import('./pages/reader.js'),
+  terms: () => import('./pages/terms.js'),
   news: () => import('./pages/news.js'),
 };
 

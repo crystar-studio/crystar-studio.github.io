@@ -1,0 +1,179 @@
+/**
+ * 用語集ページ（terms.html?code=xxx）。
+ * 用語と説明を2カラムで並べる表のような見た目。行を区切る罫線は置かず、余白だけで分ける。
+ */
+
+.term-page {
+  padding-block: var(--s-5) var(--s-7);
+}
+
+/* ---- 作品ページへ戻る導線 ---- */
+.term-back {
+  display: inline-block;
+  margin-top: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: var(--t-small);
+  letter-spacing: 0.16em;
+  color: var(--c-mute);
+  transition: color 0.25s var(--ease), letter-spacing 0.25s var(--ease);
+}
+
+.term-back::before {
+  content: '← ';
+  color: var(--c-crys);
+}
+
+.term-back:hover {
+  color: var(--c-paper);
+  letter-spacing: 0.2em;
+}
+
+/* ---- 検索バー ---- */
+.term-search {
+  margin-bottom: var(--s-5);
+}
+
+.term-search__input {
+  width: 100%;
+  max-width: 32em;
+  padding: var(--s-3);
+  font-size: var(--t-small);
+  letter-spacing: 0.06em;
+  color: var(--c-paper);
+  background-color: rgb(5 7 15 / 0.5);
+  border: 1px solid var(--c-line);
+  transition: border-color 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+
+.term-search__input::placeholder {
+  color: var(--c-mute);
+}
+
+.term-search__input:focus {
+  outline: none;
+  border-color: var(--c-crys);
+  background-color: rgb(20 26 49 / 0.7);
+}
+
+.term-count {
+  margin-top: var(--s-2);
+  font-family: var(--f-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.16em;
+  color: var(--c-mute);
+}
+
+/* 該当なしのときの表示 */
+.term-empty {
+  padding-block: var(--s-5);
+  font-size: var(--t-small);
+  color: var(--c-mute);
+}
+
+/* ---- 一覧（用語｜説明） ---- */
+.term-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+.term-row {
+  display: grid;
+  grid-template-columns: minmax(0, 14em) minmax(0, 1fr);
+  gap: var(--s-2) var(--s-5);
+}
+
+.term-row__name {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-paper);
+}
+
+.term-row__reading {
+  display: block;
+  margin-top: var(--s-1);
+  font-family: var(--f-mono);
+  font-size: var(--t-label);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--c-mute);
+}
+
+.term-row__body {
+  min-width: 0;
+  color: var(--c-paper);
+}
+
+.term-row__text p + p {
+  margin-top: var(--s-3);
+}
+
+/* ---- 物語の進行で変わる情報（入れ子で開く） ---- */
+.term-reveal {
+  margin-top: var(--s-3);
+}
+
+.term-reveal__head {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-1) 0;
+  font-family: var(--f-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.16em;
+  color: var(--c-mute);
+  cursor: pointer;
+  list-style: none;   /* 標準の三角を消して、自前の印に差し替える */
+  transition: color 0.25s var(--ease);
+}
+
+.term-reveal__head::-webkit-details-marker {
+  display: none;
+}
+
+.term-reveal__head::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--c-crys);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.25s var(--ease);
+}
+
+.term-reveal[open] > .term-reveal__head::before {
+  transform: rotate(90deg);
+}
+
+.term-reveal__head:hover,
+.term-reveal[open] > .term-reveal__head {
+  color: var(--c-paper);
+}
+
+.term-reveal__head:focus-visible {
+  outline: 1px solid var(--c-crys);
+  outline-offset: 4px;
+}
+
+/* 開いた中身。左の細い線は行の区切りではなく、何段目かを示すためのもの */
+.term-reveal__body {
+  margin-top: var(--s-2);
+  padding-left: var(--s-3);
+  border-left: 1px solid color-mix(in srgb, var(--c-crys) 35%, transparent);
+}
+
+.term-reveal__body > p + p {
+  margin-top: var(--s-3);
+}
+
+@media (max-width: 640px) {
+  /* 狭い画面では用語を上、説明を下に積む */
+  .term-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-2);
+  }
+
+  .term-list {
+    gap: var(--s-4);
+  }
+}

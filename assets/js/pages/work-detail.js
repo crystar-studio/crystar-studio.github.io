@@ -69,10 +69,12 @@ function renderSections(work, data, resolved) {
   const sections = sectionsOf(work);
 
   // CHARACTERブロックは陣営タブを使うので、作品データの characterGroups を渡す
-  const dataOf = (id) =>
-    id === 'character'
-      ? { groups: data.characterGroups ?? [] }
-      : data[id];
+  // WORLDブロックは用語集ボタンの有無を判定するため、terms も一緒に渡す
+  const dataOf = (id) => {
+    if (id === 'character') return { groups: data.characterGroups ?? [] };
+    if (id === 'world' && data.world) return { ...data.world, terms: data.terms ?? [] };
+    return data[id];
+  };
 
   mount.innerHTML = sections
     .map((section) => {

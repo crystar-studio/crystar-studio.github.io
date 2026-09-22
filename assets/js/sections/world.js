@@ -5,10 +5,11 @@ import { toParagraphs } from './story.js';
 
 /**
  * WORLDブロック。
- * キービジュアル ＋ 本文 ＋ 関連キャラクターのアイコン。
+ * キービジュアル ＋ 本文 ＋ 関連キャラクターのアイコン ＋ 用語集への導線。
  * アイコンを押すとキャラクター詳細ポップアップが開く。
+ * 用語集ボタンは、作品データに terms を書いた作品にだけ出る。
  */
-export function renderWorld({ data, resolve, characters }) {
+export function renderWorld({ data, resolve, characters, work }) {
   const visuals = (data.visuals ?? []).map(resolve);
 
   // data.characters には characters 配列の id を並べる
@@ -40,6 +41,15 @@ export function renderWorld({ data, resolve, characters }) {
         )
         .join('')}
     </ul>`
+        : ''
+    }
+
+    ${
+      (data.terms ?? []).length
+        ? `<a class="go-button" href="terms.html?code=${work.code}"
+              data-reveal style="--reveal-delay: 300ms">
+             <span class="go-button__label">GLOSSARY</span>
+           </a>`
         : ''
     }
   `;
