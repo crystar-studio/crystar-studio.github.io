@@ -137,8 +137,8 @@ export default {
       age: '21',
       birthday: '',
       bloodType: '',
-      height: '',
-      weight: '',
+      height: '161cm',
+      weight: '55kg',
       firstPerson: '僕',
       residence: '表層東京 芝浦（事務所に半ば住み着いている）',
 
