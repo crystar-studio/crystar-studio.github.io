@@ -132,7 +132,7 @@ export default {
       alphabet: 'FUKAMI SUI',
       quote: '深見探偵事務所へようこそ。どんなご依頼でも、まずはお話を伺いますよ',
 
-      affiliation: '深見探偵事務所',
+      affiliation: '探偵（慶應義塾大学 法学部 在学）',
       gender: '男性',
       age: '21',
       birthday: '5/4',
