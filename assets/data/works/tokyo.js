@@ -130,7 +130,7 @@ export default {
       name: '深見 翠',
       realName: '',
       alphabet: 'FUKAMI SUI',
-      quote: '開いてますよー。……で、何が面白いんです？',
+      quote: 'ようこそ、深見探偵事務所へ。浮気調査と人探しなら、よそを当たってください',
 
       affiliation: '探偵（慶應義塾大学 法学部 在学）',
       gender: '男性',
